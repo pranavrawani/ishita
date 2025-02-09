@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Ensures proper scaling on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Ishita!</title>
   <style>
-    /* Reset some default margins and paddings */
+    /* Reset default margins and paddings */
     * {
       margin: 0;
       padding: 0;
@@ -37,7 +39,7 @@
     /* Centered container for text */
     .container {
       position: relative;
-      z-index: 10; /* above confetti */
+      z-index: 10; /* Above confetti */
       text-align: center;
       top: 50%;
       transform: translateY(-50%);
@@ -100,7 +102,7 @@
       height: 10px;
       background-color: red;
       opacity: 0.7;
-      /* Use a combined animation for falling and spinning */
+      will-change: transform;
       animation: fallSpin linear infinite;
     }
     
@@ -117,6 +119,16 @@
         opacity: 0;
       }
     }
+    
+    /* Responsive adjustments for mobile devices */
+    @media only screen and (max-width: 600px) {
+      h1 {
+        font-size: 2.5em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -126,6 +138,7 @@
   <!-- Main content container -->
   <div class="container">
     <h1>Happy Birthday Ishita!</h1>
+    <h3>From Aadi</h3>
     <p>Wishing you a day filled with love, joy, and lots of cake!</p>
   </div>
   
@@ -133,19 +146,20 @@
     // JavaScript to generate falling confetti pieces
     const confettiContainer = document.getElementById('confetti-container');
     const colors = ['#FFC0CB', '#FFD700', '#ADFF2F', '#87CEEB', '#FF69B4', '#FF4500', '#7B68EE'];
-    const numConfetti = 150; // Adjust the number for more/less confetti
+    // Use fewer confetti pieces on smaller devices to improve performance
+    const numConfetti = window.innerWidth < 600 ? 100 : 150;
     
     for (let i = 0; i < numConfetti; i++) {
       const confetti = document.createElement('div');
       confetti.classList.add('confetti');
-      // Set a random color from the list
+      // Randomly assign a color from the list
       confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      // Random horizontal start position (using viewport width units)
+      // Random horizontal starting position
       confetti.style.left = Math.random() * 100 + 'vw';
       // Randomize the duration of the fall (between 3s and 6s)
       const fallDuration = Math.random() * 3 + 3;
       confetti.style.animationDuration = fallDuration + 's';
-      // Randomize the animation delay so they don't all fall at once
+      // Randomize the delay so they don't all fall at once
       confetti.style.animationDelay = Math.random() * 5 + 's';
       
       confettiContainer.appendChild(confetti);
