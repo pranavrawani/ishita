@@ -21,10 +21,24 @@
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      /* Fallback background */
+      background-color: #ff9a9e;
       animation: bgAnimation 10s ease infinite alternate;
+      -webkit-animation: bgAnimation 10s ease infinite alternate;
     }
     
     @keyframes bgAnimation {
+      0% {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      }
+      50% {
+        background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+      }
+      100% {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      }
+    }
+    @-webkit-keyframes bgAnimation {
       0% {
         background: linear-gradient(45deg, #ff9a9e, #fad0c4);
       }
@@ -43,6 +57,7 @@
       text-align: center;
       top: 50%;
       transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
       color: #fff;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
       padding: 0 20px;
@@ -53,6 +68,7 @@
       font-size: 4em;
       margin-bottom: 0.5em;
       animation: bounceIn 2s ease;
+      -webkit-animation: bounceIn 2s ease;
     }
     
     @keyframes bounceIn {
@@ -71,14 +87,35 @@
         transform: scale(1);
       }
     }
+    @-webkit-keyframes bounceIn {
+      0% {
+        -webkit-transform: scale(0.3);
+        opacity: 0;
+      }
+      50% {
+        -webkit-transform: scale(1.05);
+        opacity: 1;
+      }
+      70% {
+        -webkit-transform: scale(0.9);
+      }
+      100% {
+        -webkit-transform: scale(1);
+      }
+    }
     
     /* Fade-in paragraph */
     p {
       font-size: 1.5em;
       animation: fadeIn 3s ease-in-out;
+      -webkit-animation: fadeIn 3s ease-in-out;
     }
     
     @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @-webkit-keyframes fadeIn {
       0% { opacity: 0; }
       100% { opacity: 1; }
     }
@@ -104,6 +141,7 @@
       opacity: 0.7;
       will-change: transform;
       animation: fallSpin linear infinite;
+      -webkit-animation: fallSpin linear infinite;
     }
     
     @keyframes fallSpin {
@@ -116,6 +154,19 @@
       }
       100% {
         transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    @-webkit-keyframes fallSpin {
+      0% {
+        -webkit-transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        -webkit-transform: translateY(110vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -143,27 +194,32 @@
   </div>
   
   <script>
-    // JavaScript to generate falling confetti pieces
-    const confettiContainer = document.getElementById('confetti-container');
-    const colors = ['#FFC0CB', '#FFD700', '#ADFF2F', '#87CEEB', '#FF69B4', '#FF4500', '#7B68EE'];
-    // Use fewer confetti pieces on smaller devices to improve performance
-    const numConfetti = window.innerWidth < 600 ? 100 : 150;
-    
-    for (let i = 0; i < numConfetti; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      // Randomly assign a color from the list
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      // Random horizontal starting position
-      confetti.style.left = Math.random() * 100 + 'vw';
-      // Randomize the duration of the fall (between 3s and 6s)
-      const fallDuration = Math.random() * 3 + 3;
-      confetti.style.animationDuration = fallDuration + 's';
-      // Randomize the delay so they don't all fall at once
-      confetti.style.animationDelay = Math.random() * 5 + 's';
+    // Ensure the DOM is fully loaded before running the confetti script
+    document.addEventListener('DOMContentLoaded', function() {
+      var confettiContainer = document.getElementById('confetti-container');
+      var colors = ['#FFC0CB', '#FFD700', '#ADFF2F', '#87CEEB', '#FF69B4', '#FF4500', '#7B68EE'];
+      // Use fewer confetti pieces on smaller devices for better performance
+      var numConfetti = window.innerWidth < 600 ? 100 : 150;
       
-      confettiContainer.appendChild(confetti);
-    }
+      for (var i = 0; i < numConfetti; i++) {
+        var confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        // Assign a random color from the list
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        // Random horizontal starting position
+        confetti.style.left = Math.random() * 100 + 'vw';
+        // Randomize the duration of the fall (between 3s and 6s)
+        var fallDuration = Math.random() * 3 + 3;
+        confetti.style.animationDuration = fallDuration + 's';
+        confetti.style.webkitAnimationDuration = fallDuration + 's';
+        // Randomize the delay so they don't all fall at once
+        var delay = Math.random() * 5;
+        confetti.style.animationDelay = delay + 's';
+        confetti.style.webkitAnimationDelay = delay + 's';
+        
+        confettiContainer.appendChild(confetti);
+      }
+    });
   </script>
 </body>
 </html>
