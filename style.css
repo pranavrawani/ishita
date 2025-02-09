@@ -1,0 +1,120 @@
+/* Reset default margins, paddings, and set box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Animated background gradient */
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  background-color: #ff9a9e; /* Fallback */
+  animation: bgAnimation 10s ease infinite alternate;
+  -webkit-animation: bgAnimation 10s ease infinite alternate;
+}
+
+@keyframes bgAnimation {
+  0% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+  50% { background: linear-gradient(45deg, #a18cd1, #fbc2eb); }
+  100% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+}
+@-webkit-keyframes bgAnimation {
+  0% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+  50% { background: linear-gradient(45deg, #a18cd1, #fbc2eb); }
+  100% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+}
+
+/* Centered container for text */
+.container {
+  position: relative;
+  z-index: 10; /* Above confetti */
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  padding: 0 20px;
+}
+
+/* Bouncing headline animation */
+h1 {
+  font-size: 4em;
+  margin-bottom: 0.5em;
+  animation: bounceIn 2s ease;
+  -webkit-animation: bounceIn 2s ease;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+@-webkit-keyframes bounceIn {
+  0% { -webkit-transform: scale(0.3); opacity: 0; }
+  50% { -webkit-transform: scale(1.05); opacity: 1; }
+  70% { -webkit-transform: scale(0.9); }
+  100% { -webkit-transform: scale(1); }
+}
+
+/* Fade-in paragraph */
+p {
+  font-size: 1.5em;
+  animation: fadeIn 3s ease-in-out;
+  -webkit-animation: fadeIn 3s ease-in-out;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Confetti container covers the screen */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Style for each confetti piece */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  opacity: 0.7;
+  will-change: transform;
+  animation: fallSpin linear infinite;
+  -webkit-animation: fallSpin linear infinite;
+}
+
+@keyframes fallSpin {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+@-webkit-keyframes fallSpin {
+  0% { -webkit-transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { -webkit-transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Responsive adjustments for mobile devices */
+@media only screen and (max-width: 600px) {
+  h1 { font-size: 2.5em; }
+  p { font-size: 1em; }
+}
