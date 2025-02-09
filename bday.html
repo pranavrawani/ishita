@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Ishita!</title>
+  <style>
+    /* Reset some default margins and paddings */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    /* Animated background gradient */
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      animation: bgAnimation 10s ease infinite alternate;
+    }
+    
+    @keyframes bgAnimation {
+      0% {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      }
+      50% {
+        background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+      }
+      100% {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      }
+    }
+    
+    /* Centered container for text */
+    .container {
+      position: relative;
+      z-index: 10; /* above confetti */
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      padding: 0 20px;
+    }
+    
+    /* Bouncing headline animation */
+    h1 {
+      font-size: 4em;
+      margin-bottom: 0.5em;
+      animation: bounceIn 2s ease;
+    }
+    
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.3);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Fade-in paragraph */
+    p {
+      font-size: 1.5em;
+      animation: fadeIn 3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    /* Confetti container fills the screen */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 5;
+    }
+    
+    /* Style for each confetti piece */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.7;
+      /* Use a combined animation for falling and spinning */
+      animation: fallSpin linear infinite;
+    }
+    
+    @keyframes fallSpin {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Confetti container -->
+  <div class="confetti-container" id="confetti-container"></div>
+  
+  <!-- Main content container -->
+  <div class="container">
+    <h1>Happy Birthday Ishita!</h1>
+    <p>Wishing you a day filled with love, joy, and lots of cake!</p>
+  </div>
+  
+  <script>
+    // JavaScript to generate falling confetti pieces
+    const confettiContainer = document.getElementById('confetti-container');
+    const colors = ['#FFC0CB', '#FFD700', '#ADFF2F', '#87CEEB', '#FF69B4', '#FF4500', '#7B68EE'];
+    const numConfetti = 150; // Adjust the number for more/less confetti
+    
+    for (let i = 0; i < numConfetti; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      // Set a random color from the list
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      // Random horizontal start position (using viewport width units)
+      confetti.style.left = Math.random() * 100 + 'vw';
+      // Randomize the duration of the fall (between 3s and 6s)
+      const fallDuration = Math.random() * 3 + 3;
+      confetti.style.animationDuration = fallDuration + 's';
+      // Randomize the animation delay so they don't all fall at once
+      confetti.style.animationDelay = Math.random() * 5 + 's';
+      
+      confettiContainer.appendChild(confetti);
+    }
+  </script>
+</body>
+</html>
