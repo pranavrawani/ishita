@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Ensures proper scaling on mobile devices -->
+  <!-- Ensure proper scaling on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Ishita!</title>
   <style>
-    /* Reset default margins and paddings */
+    /* Reset default margins, paddings, and set box-sizing */
     * {
       margin: 0;
       padding: 0;
@@ -21,33 +21,20 @@
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-      /* Fallback background */
-      background-color: #ff9a9e;
+      background-color: #ff9a9e; /* Fallback */
       animation: bgAnimation 10s ease infinite alternate;
       -webkit-animation: bgAnimation 10s ease infinite alternate;
     }
     
     @keyframes bgAnimation {
-      0% {
-        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-      }
-      50% {
-        background: linear-gradient(45deg, #a18cd1, #fbc2eb);
-      }
-      100% {
-        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-      }
+      0% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+      50% { background: linear-gradient(45deg, #a18cd1, #fbc2eb); }
+      100% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
     }
     @-webkit-keyframes bgAnimation {
-      0% {
-        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-      }
-      50% {
-        background: linear-gradient(45deg, #a18cd1, #fbc2eb);
-      }
-      100% {
-        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-      }
+      0% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+      50% { background: linear-gradient(45deg, #a18cd1, #fbc2eb); }
+      100% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
     }
     
     /* Centered container for text */
@@ -72,36 +59,16 @@
     }
     
     @keyframes bounceIn {
-      0% {
-        transform: scale(0.3);
-        opacity: 0;
-      }
-      50% {
-        transform: scale(1.05);
-        opacity: 1;
-      }
-      70% {
-        transform: scale(0.9);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); opacity: 1; }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
     }
     @-webkit-keyframes bounceIn {
-      0% {
-        -webkit-transform: scale(0.3);
-        opacity: 0;
-      }
-      50% {
-        -webkit-transform: scale(1.05);
-        opacity: 1;
-      }
-      70% {
-        -webkit-transform: scale(0.9);
-      }
-      100% {
-        -webkit-transform: scale(1);
-      }
+      0% { -webkit-transform: scale(0.3); opacity: 0; }
+      50% { -webkit-transform: scale(1.05); opacity: 1; }
+      70% { -webkit-transform: scale(0.9); }
+      100% { -webkit-transform: scale(1); }
     }
     
     /* Fade-in paragraph */
@@ -110,7 +77,6 @@
       animation: fadeIn 3s ease-in-out;
       -webkit-animation: fadeIn 3s ease-in-out;
     }
-    
     @keyframes fadeIn {
       0% { opacity: 0; }
       100% { opacity: 1; }
@@ -120,7 +86,7 @@
       100% { opacity: 1; }
     }
     
-    /* Confetti container fills the screen */
+    /* Confetti container covers the screen */
     .confetti-container {
       position: fixed;
       top: 0;
@@ -145,40 +111,20 @@
     }
     
     @keyframes fallSpin {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.8; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
     @-webkit-keyframes fallSpin {
-      0% {
-        -webkit-transform: translateY(-10vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8;
-      }
-      100% {
-        -webkit-transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { -webkit-transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.8; }
+      100% { -webkit-transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
     
     /* Responsive adjustments for mobile devices */
     @media only screen and (max-width: 600px) {
-      h1 {
-        font-size: 2.5em;
-      }
-      p {
-        font-size: 1em;
-      }
+      h1 { font-size: 2.5em; }
+      p { font-size: 1em; }
     }
   </style>
 </head>
@@ -194,32 +140,39 @@
   </div>
   
   <script>
-    // Ensure the DOM is fully loaded before running the confetti script
-    document.addEventListener('DOMContentLoaded', function() {
-      var confettiContainer = document.getElementById('confetti-container');
-      var colors = ['#FFC0CB', '#FFD700', '#ADFF2F', '#87CEEB', '#FF69B4', '#FF4500', '#7B68EE'];
-      // Use fewer confetti pieces on smaller devices for better performance
-      var numConfetti = window.innerWidth < 600 ? 100 : 150;
-      
-      for (var i = 0; i < numConfetti; i++) {
-        var confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        // Assign a random color from the list
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        // Random horizontal starting position
-        confetti.style.left = Math.random() * 100 + 'vw';
-        // Randomize the duration of the fall (between 3s and 6s)
-        var fallDuration = Math.random() * 3 + 3;
-        confetti.style.animationDuration = fallDuration + 's';
-        confetti.style.webkitAnimationDuration = fallDuration + 's';
-        // Randomize the delay so they don't all fall at once
-        var delay = Math.random() * 5;
-        confetti.style.animationDelay = delay + 's';
-        confetti.style.webkitAnimationDelay = delay + 's';
+    (function() {
+      'use strict';
+      // Run confetti script after the DOM is fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        var confettiContainer = document.getElementById('confetti-container');
+        if (!confettiContainer) return;
         
-        confettiContainer.appendChild(confetti);
-      }
-    });
+        // Define a set of fun colors
+        var colors = ['#FFC0CB', '#FFD700', '#ADFF2F', '#87CEEB', '#FF69B4', '#FF4500', '#7B68EE'];
+        // Adjust the number of confetti pieces based on device width
+        var numConfetti = window.innerWidth < 600 ? 50 : 100;
+        
+        // Create and animate each confetti piece
+        for (var i = 0; i < numConfetti; i++) {
+          var confetti = document.createElement('div');
+          confetti.classList.add('confetti');
+          // Set a random color from the array
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          // Place the confetti piece at a random horizontal position
+          confetti.style.left = Math.random() * 100 + 'vw';
+          // Randomize the falling duration (3s to 6s)
+          var fallDuration = Math.random() * 3 + 3;
+          confetti.style.animationDuration = fallDuration + 's';
+          confetti.style.webkitAnimationDuration = fallDuration + 's';
+          // Randomize the delay (0s to 5s) so pieces fall at different times
+          var delay = Math.random() * 5;
+          confetti.style.animationDelay = delay + 's';
+          confetti.style.webkitAnimationDelay = delay + 's';
+          
+          confettiContainer.appendChild(confetti);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
